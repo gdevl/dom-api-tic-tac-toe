@@ -8,12 +8,16 @@
 </head>
 <body>
   <div id="game">
-    <h1 class="announcement" id="game-status"></h1>
+    <h1 class="announcement" id="game-status"></h1> <!-- this element indicates which player won the game or if there is a tie-->
 
-    <div id="tic-tac-toe-board">
-      <div id="square-0" class="square row-1 col-1"></div>
-      <div id="square-1" class="square row-1 col-2"></div>
-      <div id="square-2" class="square row-1 col-3"></div>
+
+    <!-- when a player clicks a square, we'll need to check if the square is occupied first-->
+    <!-- if it is, do nothing. -->
+    <!-- if it's empty, put the player's image there, x or o-->
+    <div id="tic-tac-toe-board"><!-- black bg-->
+      <div id="square-0" class="square row-1 col-1"></div> <!-- board square. these should be clickable-->
+      <div id="square-1" class="square row-1 col-2"></div> <!-- board square-->
+      <div id="square-2" class="square row-1 col-3"></div> <!-- board square-->
       <div id="square-3" class="square row-2 col-1"></div>
       <div id="square-4" class="square row-2 col-2"></div>
       <div id="square-5" class="square row-2 col-3"></div>
@@ -22,7 +26,7 @@
       <div id="square-8" class="square row-3 col-3"></div>
     </div>
 
-    <div class="actions">
+    <div class="actions">  <!-- action buttons. subscribe to each of their click events to make the game work-->
       <button>New Game</button>
       <div class="spacer"></div>
       <button>Give Up</button>
