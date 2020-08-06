@@ -11,13 +11,25 @@ function even(n) {
     return n % 2 === 0;
 }
 
+const isSquareOccupied = (array, el) => {
+    return array.includes(el);
+}
+
 
 const gridClicker = () => {
     let gridSquares = document.querySelectorAll('.square'); // holds the squares divs
     gridSquares.forEach(gridSquare => {
         gridSquare.addEventListener('click', event => {
-            // every time we click, we add the 
-            if (clickCount)
+            // every time we click, we add the
+
+            
+
+
+
+            if (!even(clickCount)) {
+                // add square id to the player x array.
+                event.target
+            }
         })
     })
 
