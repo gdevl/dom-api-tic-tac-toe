@@ -5,14 +5,12 @@
 
 const playerX = [];
 const playerO = [];
+let allGrids = playerX.length + playerO.length;
 let clickCount = 1;
 
 function even(n) {
     return n % 2 === 0;
 }
-
-// if playerx || o. length >= 3 then start checking
-//
 
 let solutions = [
     ['square-0', 'square-1', 'square-2'],
@@ -30,13 +28,16 @@ let winnerChecker = (solutions, player) => {
         let solution = solutions[i];
 
         if (player.includes(solution[0]) && player.includes(solution[1]) && player.includes(solution[2])) {
-            console.log(`${player} is the winner`);
-            return true
+            console.log('We have a winner! Congratulations!');
+            return true;
         }
     }
 }
 
-console.log('winner checker' + winnerChecker(solutions, ['square-6', 'square-2', 'square-4']))
+const tieChecker = (player1, player2, weHaveAWinner) => {
+    return player1.length + player2.length === 9 && !weHaveAWinner;
+}
+
 
 const isSquareOccupied = (array1, array2, el) => {
     return (array1.includes(el) || array2.includes(el)); //
@@ -49,12 +50,14 @@ const gridClicker = () => {
     for (let i = 0; i < gridSquares.length; i ++) {
         let gridSquare = gridSquares[i];
         gridSquare.addEventListener('click', event => {
-            let current = event.currentTarget;
-            let currentId = event.currentTarget.id;
 
-            if (weHaveAWinner === true) {
+            // check for winner
+            if (weHaveAWinner) {
                 return;
             }
+
+            let current = event.currentTarget;
+            let currentId = event.currentTarget.id;
 
             if (even(clickCount) === false) {
                 if (isSquareOccupied(playerX, playerO, currentId)) {
@@ -62,15 +65,15 @@ const gridClicker = () => {
                 } else {
                     current.innerHTML = "<img src='./images/player-x.svg'/>";
                     playerX.push(currentId);
-                    //add a condition if winnerChecker is true then create alert
                     if (winnerChecker(solutions, playerX)) {
-                        weHaveAWinner = true
+                        weHaveAWinner = true;
+                        return;
+                    }
+                    if (tieChecker(playerX, playerO, weHaveAWinner)) {
+                        console.log('We have a tie!');
                         return;
                     }
                     clickCount += 1;
-                    console.log(`incremented clickCount= ${clickCount}`);
-                    console.log('playerX: ' + playerX);
-                    console.log(`----------`);
                     return;
                 }
             }
@@ -83,17 +86,18 @@ const gridClicker = () => {
                     playerO.push(currentId);
                     if (winnerChecker(solutions, playerO)) {
                         weHaveAWinner=true;
+                        // console.log(weHaveAWinner);
+                        return;
+                    }
+                    if (tieChecker(playerX, playerO, weHaveAWinner)) {
+                        console.log('We have a tie!');
                         return;
                     }
                     clickCount += 1;
-                    console.log(`incrememented clickCount= ${clickCount}`);
-                    console.log('playerO: ' + playerO);
-                    console.log(`----------`);
                     return;
                 }
             }
         })
-
     }
 
 };
