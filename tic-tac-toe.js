@@ -7,6 +7,7 @@ const playerX = [];
 const playerO = [];
 let allGrids = playerX.length + playerO.length;
 let clickCount = 1;
+let header = document.getElementById('game-status');
 
 function even(n) {
     return n % 2 === 0;
@@ -59,7 +60,7 @@ const gridClicker = () => {
             let current = event.currentTarget;
             let currentId = event.currentTarget.id;
 
-            if (even(clickCount) === false) {
+            if (!even(clickCount)) {
                 if (isSquareOccupied(playerX, playerO, currentId)) {
                     return;
                 } else {
@@ -67,10 +68,13 @@ const gridClicker = () => {
                     playerX.push(currentId);
                     if (winnerChecker(solutions, playerX)) {
                         weHaveAWinner = true;
+                        let winnerContent = document.createTextNode('Player X is the winner!');
+                        header.append(winnerContent);
                         return;
                     }
                     if (tieChecker(playerX, playerO, weHaveAWinner)) {
-                        console.log('We have a tie!');
+                        let titleContent = document.createTextNode('There is a tie, good jo both??');
+                        header.append(titleContent);
                         return;
                     }
                     clickCount += 1;
@@ -78,7 +82,7 @@ const gridClicker = () => {
                 }
             }
 
-            if (even(clickCount) === true) {
+            if (even(clickCount)) {
                 if (isSquareOccupied(playerX, playerO, currentId)) {
                     return;
                 } else {
@@ -86,11 +90,14 @@ const gridClicker = () => {
                     playerO.push(currentId);
                     if (winnerChecker(solutions, playerO)) {
                         weHaveAWinner=true;
+                        let winnerContent = document.createTextNode('Player O is the winner!');
+                        header.append(winnerContent);
                         // console.log(weHaveAWinner);
                         return;
                     }
                     if (tieChecker(playerX, playerO, weHaveAWinner)) {
-                        console.log('We have a tie!');
+                        let titleContent = document.createTextNode('There is a tie, good jo both??');
+                        header.append(titleContent);
                         return;
                     }
                     clickCount += 1;
@@ -99,7 +106,6 @@ const gridClicker = () => {
             }
         })
     }
-
 };
 
 gridClicker();
