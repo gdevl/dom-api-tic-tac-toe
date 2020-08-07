@@ -45,12 +45,16 @@ const isSquareOccupied = (array1, array2, el) => {
 const gridClicker = () => {
 
     let gridSquares = document.querySelectorAll('.square'); // holds the squares divs
-
+    let weHaveAWinner = false;
     for (let i = 0; i < gridSquares.length; i ++) {
         let gridSquare = gridSquares[i];
         gridSquare.addEventListener('click', event => {
             let current = event.currentTarget;
             let currentId = event.currentTarget.id;
+
+            if (weHaveAWinner === true) {
+                return;
+            }
 
             if (even(clickCount) === false) {
                 if (isSquareOccupied(playerX, playerO, currentId)) {
@@ -59,7 +63,10 @@ const gridClicker = () => {
                     current.innerHTML = "<img src='./images/player-x.svg'/>";
                     playerX.push(currentId);
                     //add a condition if winnerChecker is true then create alert
-                    winnerChecker(solutions, playerX)
+                    if (winnerChecker(solutions, playerX)) {
+                        weHaveAWinner = true
+                        return;
+                    }
                     clickCount += 1;
                     console.log(`incremented clickCount= ${clickCount}`);
                     console.log('playerX: ' + playerX);
@@ -74,7 +81,10 @@ const gridClicker = () => {
                 } else {
                     current.innerHTML = "<img src='./images/player-o.svg'/>";
                     playerO.push(currentId);
-                    winnerChecker(solutions, playerO)
+                    if (winnerChecker(solutions, playerO)) {
+                        weHaveAWinner=true;
+                        return;
+                    }
                     clickCount += 1;
                     console.log(`incrememented clickCount= ${clickCount}`);
                     console.log('playerO: ' + playerO);
@@ -83,7 +93,9 @@ const gridClicker = () => {
                 }
             }
         })
+
     }
+
 };
 
 gridClicker();
