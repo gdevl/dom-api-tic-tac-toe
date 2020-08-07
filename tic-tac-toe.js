@@ -8,6 +8,7 @@ const playerO = [];
 let allGrids = playerX.length + playerO.length;
 let clickCount = 1;
 let header = document.getElementById('game-status');
+let newGameBtn = document.getElementById('new-game');
 
 function even(n) {
     return n % 2 === 0;
@@ -70,11 +71,13 @@ const gridClicker = () => {
                         weHaveAWinner = true;
                         let winnerContent = document.createTextNode('Player X is the winner!');
                         header.append(winnerContent);
+                        newGameBtn.classList.remove('btn-disable')
                         return;
                     }
                     if (tieChecker(playerX, playerO, weHaveAWinner)) {
                         let titleContent = document.createTextNode('There is a tie, good jo both??');
                         header.append(titleContent);
+                        newGameBtn.classList.remove('btn-disable')
                         return;
                     }
                     clickCount += 1;
@@ -92,12 +95,14 @@ const gridClicker = () => {
                         weHaveAWinner=true;
                         let winnerContent = document.createTextNode('Player O is the winner!');
                         header.append(winnerContent);
+                        newGameBtn.classList.remove('btn-disable')
                         // console.log(weHaveAWinner);
                         return;
                     }
                     if (tieChecker(playerX, playerO, weHaveAWinner)) {
                         let titleContent = document.createTextNode('There is a tie, good jo both??');
                         header.append(titleContent);
+                        newGameBtn.classList.remove('btn-disable')
                         return;
                     }
                     clickCount += 1;
@@ -108,4 +113,11 @@ const gridClicker = () => {
     }
 };
 
+const newGame = () => {
+    newGameBtn.addEventListener('click', event =>{
+        location.reload()
+    })
+}
+
 gridClicker();
+newGame();

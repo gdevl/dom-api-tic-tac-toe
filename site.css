@@ -63,3 +63,10 @@ button {
   height: 130px;
   width: 130px;
 }
+
+.btn-disable {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #c0c0c0;
+  background-color: white;
+}
