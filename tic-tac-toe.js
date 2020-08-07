@@ -11,14 +11,10 @@ function even(n) {
     return n % 2 === 0;
 }
 
-// const isSquareOccupied = (array1, array2, el) => {
-//     return (array1.includes(el) || array2.includes(el)); // 
-// }
-
-const isSquareOccupied = el => {
-    return el === '';
+const isSquareOccupied = (array1, array2, el) => {
+    return (array1.includes(el) || array2.includes(el)); // 
 }
-// console.log(isSquareOccupied(['square-0', 'square-1'], 'square-0'));
+
 const gridClicker = () => {
 
     let gridSquares = document.querySelectorAll('.square'); // holds the squares divs
@@ -26,24 +22,11 @@ const gridClicker = () => {
     for (let i = 0; i < gridSquares.length; i ++) {
         let gridSquare = gridSquares[i];
         gridSquare.addEventListener('click', event => {
-            let current = event.target;
-            let currentId = event.target.id;
-
-            // if (isSquareOccupied(playerX, playerO, currentId)) {
-            //     console.log(`Square is occupied!`);
-            //     return;
-            // }
-            
-            console.log(`currentId= ${currentId}`);
-            console.log(`square occupied? ${isSquareOccupied(currentId)}`);
-            console.log(`previous clickCount= ${clickCount}`);
-            // console.log(`Is clickCount even? ${even(clickCount)}`);
-            console.log(`----------`);
-            
-            
+            let current = event.currentTarget;
+            let currentId = event.currentTarget.id;
 
             if (even(clickCount) === false) {
-                if (isSquareOccupied(currentId)) {
+                if (isSquareOccupied(playerX, playerO, currentId)) {
                     return;
                 } else {
                     current.innerHTML = "<img src='./images/player-x.svg'/>";
@@ -57,7 +40,7 @@ const gridClicker = () => {
             }
             
             if (even(clickCount) === true) {
-                if (isSquareOccupied(currentId)) {
+                if (isSquareOccupied(playerX, playerO, currentId)) {
                     return;
                 } else {
                     current.innerHTML = "<img src='./images/player-o.svg'/>";
@@ -69,23 +52,6 @@ const gridClicker = () => {
                     return;
                 }
             }
-
-            // if (!even(clickCount)) {
-            //     current.innerHTML = "<img src='./images/player-x.svg'/>";
-            //     playerX.push(currentId);
-            //     clickCount+=1;
-            //     console.log('playerX: ' + playerX);
-            //     console.log(clickCount);
-            //     return;
-            // } else if (even(clickCount)) {
-            //     current.innerHTML = "<img src='./images/player-o.svg'/>";
-            //     playerO.push(currentId);
-            //     clickCount+=1;
-            //     console.log('playerO: ' + playerO);
-            //     console.log(clickCount);
-            //     return;
-            // }
-
         })
     }
 
