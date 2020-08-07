@@ -54,7 +54,6 @@ const gridClicker = () => {
             }
         })
     }
-
 };
 
 gridClicker();
