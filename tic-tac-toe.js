@@ -18,7 +18,7 @@ const isSquareOccupied = (array1, array2, el) => {
 const gridClicker = () => {
 
     let gridSquares = document.querySelectorAll('.square'); // holds the squares divs
-    
+
 
     // gridSquares.forEach(gridSquare => {
 
@@ -30,7 +30,7 @@ const gridClicker = () => {
     //         if (isSquareOccupied(playerX, playerO, currentId)) {
     //             return;
     //         }
-            
+
 
     //         console.log('current= ' + current);
     //         console.log('currentId= ' + currentId);
@@ -58,6 +58,7 @@ const gridClicker = () => {
         gridSquare.addEventListener('click', event => {
             let current = event.target;
             let currentId = event.target.id;
+            console.log(current)
 
             if (isSquareOccupied(playerX, playerO, currentId)) {
                 return;
