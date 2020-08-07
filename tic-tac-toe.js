@@ -9,6 +9,8 @@ let allGrids = playerX.length + playerO.length;
 let clickCount = 1;
 let header = document.getElementById('game-status');
 let newGameBtn = document.getElementById('new-game');
+let giveUpBtn = document.getElementById('give-up');
+let giveUpPushed = false
 
 function even(n) {
     return n % 2 === 0;
@@ -52,11 +54,14 @@ const gridClicker = () => {
     for (let i = 0; i < gridSquares.length; i ++) {
         let gridSquare = gridSquares[i];
         gridSquare.addEventListener('click', event => {
-
+            if (giveUpPushed) {
+                return
+            }
             // check for winner
             if (weHaveAWinner) {
                 return;
             }
+
 
             let current = event.currentTarget;
             let currentId = event.currentTarget.id;
@@ -118,6 +123,24 @@ const newGame = () => {
         location.reload()
     })
 }
+const giveUp = () => {
+    giveUpBtn.addEventListener('click', event => {
+        if (even(clickCount)) {
+            let winnerContent = document.createTextNode('Player O is the winner!');
+            header.append(winnerContent);
+            giveUpBtn.classList.add('btn-disable');
+            newGameBtn.classList.remove('btn-disable')
+            giveUpPushed = true
+        } else {
+            let winnerContent = document.createTextNode('Player X is the winner!');
+            header.append(winnerContent);
+            giveUpBtn.classList.add('btn-disable');
+            newGameBtn.classList.remove('btn-disable')
+            giveUpPushed = true
+        }
+    })
+}
 
 gridClicker();
 newGame();
+giveUp();
