@@ -18,43 +18,6 @@ const isSquareOccupied = (array1, array2, el) => {
 const gridClicker = () => {
 
     let gridSquares = document.querySelectorAll('.square'); // holds the squares divs
-<<<<<<< HEAD
-
-
-    // gridSquares.forEach(gridSquare => {
-
-    //     gridSquare.addEventListener('click', event => {
-    //         // every time we click, we add the
-            // let current = event.target;
-            // let currentId = event.target.id;
-
-    //         if (isSquareOccupied(playerX, playerO, currentId)) {
-    //             return;
-    //         }
-
-
-    //         console.log('current= ' + current);
-    //         console.log('currentId= ' + currentId);
-
-            // if (!even(clickCount)) {
-            //     current.innerHTML = "<img src='./images/player-x.svg'/>";
-            //     playerX.push(currentId);
-            //     clickCount++;
-            //     console.log('playerX: ' + playerX);
-            //     console.log(clickCount);
-            //     return;
-            // } else if (even(clickCount)) {
-            //     current.innerHTML = "<img src='./images/player-o.svg'/>";
-            //     playerO.push(currentId);
-            //     clickCount++;
-            //     console.log('playerO: ' + playerO);
-            //     console.log(clickCount);
-            //     return;
-            // }
-    //     });
-    // });
-=======
->>>>>>> f4cd111a281bd8bf2058276d0a0b590b976ef2b1
 
     for (let i = 0; i < gridSquares.length; i ++) {
         let gridSquare = gridSquares[i];
